@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goldmoric Price List</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8B6F2E;
+    --dark: #0F0E0C;
+    --dark2: #1A1916;
+    --dark3: #252420;
+    --dark4: #312F2A;
+    --text: #F0EAD6;
+    --text-muted: #9E9483;
+    --red: #E05C5C;
+    --green: #5CB88A;
+    --border: rgba(201,168,76,0.2);
+    --radius: 10px;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+  }
+
+  /* Header */
+  header {
+    background: var(--dark2);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  .logo-circle {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, #1a3a6e, #0a1a3a);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700;
+    color: var(--gold);
+    border: 1.5px solid var(--gold-dim);
+    flex-shrink: 0;
+  }
+  .header-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .header-text p {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 1px;
+    letter-spacing: 0.5px;
+  }
+  .update-badge {
+    margin-left: auto;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid var(--gold-dim);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 11px;
+    color: var(--gold-light);
+    white-space: nowrap;
+  }
+
+  /* Controls */
+  .controls {
+    padding: 20px 24px 16px;
+    background: var(--dark2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    width: 16px; height: 16px;
+  }
+  input[type="text"] {
+    width: 100%;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    padding: 10px 14px 10px 38px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input[type="text"]:focus { border-color: var(--gold-dim); }
+  input[type="text"]::placeholder { color: var(--text-muted); }
+
+  .filter-group {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-muted);
+    padding: 7px 14px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .filter-btn:hover { border-color: var(--gold-dim); color: var(--text); }
+  .filter-btn.active {
+    background: var(--gold-dim);
+    border-color: var(--gold);
+    color: var(--dark);
+    font-weight: 600;
+  }
+
+  /* Mode Toggle */
+  .mode-toggle {
+    display: flex;
+    background: var(--dark3);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .mode-btn {
+    padding: 7px 16px;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.18s;
+    font-weight: 500;
+  }
+  .mode-btn.active {
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 700;
+  }
+
+  /* Results info */
+  .results-bar {
+    padding: 10px 24px;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .results-count { color: var(--gold-light); font-weight: 600; }
+
+  /* Category sections */
+  .main { padding: 20px 24px 40px; }
+  .category-section { margin-bottom: 32px; }
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .category-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+  .category-count {
+    background: rgba(201,168,76,0.15);
+    border-radius: 20px;
+    padding: 2px 10px;
+    font-size: 11px;
+    color: var(--gold-light);
+  }
+  .category-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Table */
+  .price-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--dark2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .price-table thead th {
+    background: var(--dark3);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-table thead th:last-child,
+  .price-table thead th:nth-last-child(2) { text-align: right; }
+  .price-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s;
+  }
+  .price-table tbody tr:last-child { border-bottom: none; }
+  .price-table tbody tr:hover { background: rgba(201,168,76,0.04); }
+  .price-table td {
+    padding: 10px 14px;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  .code-cell {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 13px;
+  }
+  .no-cell {
+    color: var(--text-muted);
+    font-size: 12px;
+    width: 36px;
+  }
+  .min-cell {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-align: right;
+  }
+  /* 4-column price styles */
+  /* P1 = สีเขียว, ไม่ต่ำกว่า (P6) = สีแดง — ทั้ง in/นอก Platform */
+  .price-plat-p1 {
+    text-align: right;
+    font-weight: 700;
+    color: var(--green);
+    font-size: 14px;
+    background: rgba(92,184,138,0.06);
+  }
+  .price-plat-min {
+    text-align: right;
+    font-weight: 700;
+    color: var(--red);
+    font-size: 14px;
+    background: rgba(224,92,92,0.06);
+    border-right: 2px solid rgba(201,168,76,0.25) !important;
+  }
+  .price-out-p1 {
+    text-align: right;
+    font-weight: 700;
+    color: var(--green);
+    font-size: 14px;
+    background: rgba(92,184,138,0.06);
+  }
+  .price-out-min {
+    text-align: right;
+    font-weight: 700;
+    color: var(--red);
+    font-size: 14px;
+    background: rgba(224,92,92,0.06);
+  }
+  .price-na {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-align: right;
+  }
+  /* Group header row in thead */
+  .th-group-plat {
+    background: rgba(92,184,138,0.12) !important;
+    color: var(--green) !important;
+    text-align: center !important;
+    border-right: 2px solid rgba(201,168,76,0.25) !important;
+    font-size: 11px !important;
+    letter-spacing: 0.5px !important;
+    padding: 6px 14px !important;
+  }
+  .th-group-out {
+    background: rgba(224,92,92,0.12) !important;
+    color: var(--red) !important;
+    text-align: center !important;
+    font-size: 11px !important;
+    letter-spacing: 0.5px !important;
+    padding: 6px 14px !important;
+  }
+  .th-sub {
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.3px !important;
+    padding: 6px 14px !important;
+  }
+  .th-sub-plat { color: var(--green) !important; background: rgba(92,184,138,0.06) !important; text-align: right !important; }
+  .th-sub-plat-min { color: var(--red) !important; background: rgba(224,92,92,0.06) !important; text-align: right !important; border-right: 2px solid rgba(201,168,76,0.25) !important; }
+  .th-sub-out { color: var(--green) !important; background: rgba(92,184,138,0.06) !important; text-align: right !important; }
+  .th-sub-out-min { color: var(--red) !important; background: rgba(224,92,92,0.06) !important; text-align: right !important; }
+  .note-cell {
+    font-size: 11px;
+    color: var(--text-muted);
+    max-width: 160px;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+  .empty-state svg { opacity: 0.3; margin-bottom: 12px; }
+  .empty-state p { font-size: 15px; }
+
+  /* Discount info box */
+  .discount-box {
+    background: var(--dark2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 14px 18px;
+    margin: 0 24px 20px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .discount-box h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .discount-row { display: flex; gap: 8px; align-items: center; }
+  .discount-row .range { color: var(--text-muted); min-width: 220px; }
+  .discount-row .pct { color: var(--gold-light); font-weight: 600; }
+
+  /* Platform note */
+  .platform-note {
+    background: rgba(224,92,92,0.08);
+    border: 1px solid rgba(224,92,92,0.25);
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    margin: 0 24px 16px;
+    font-size: 12px;
+    color: #E8A0A0;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .tag-new {
+    background: rgba(92,184,138,0.15);
+    border: 1px solid rgba(92,184,138,0.3);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 10px;
+    color: var(--green);
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 640px) {
+    .controls { gap: 8px; }
+    .main { padding: 16px 12px 40px; }
+    .discount-box, .platform-note { margin: 0 12px 14px; }
+    .price-table td, .price-table thead th { padding: 8px 10px; }
+    .results-bar { padding: 8px 12px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-circle">G</div>
+  <div class="header-text">
+    <h1>GOLDMORIC</h1>
+    <p>PRICE LIST SYSTEM</p>
+  </div>
+  <div class="update-badge">อัปเดต 22 MAY 2026</div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+    </svg>
+    <input type="text" id="searchInput" placeholder="ค้นหารหัสสินค้า เช่น Mint, Charlotte, C-LION..." autocomplete="off">
+  </div>
+  <div class="filter-group" id="catFilters">
+    <button class="filter-btn active" data-cat="all">ทั้งหมด</button>
+    <button class="filter-btn" data-cat="table">โต๊ะ (Table)</button>
+    <button class="filter-btn" data-cat="marble">หินอ่อน (Marble Top)</button>
+    <button class="filter-btn" data-cat="chair">เก้าอี้ (Chair)</button>
+    <button class="filter-btn" data-cat="bed">เตียง (Bed)</button>
+    <button class="filter-btn" data-cat="furniture">เฟอร์นิเจอร์</button>
+    <button class="filter-btn" data-cat="lamp">โคมไฟ/รูปภาพ</button>
+    <button class="filter-btn" data-cat="shoe">ตู้รองเท้า</button>
+    <button class="filter-btn" data-cat="kid">Kid Landdy</button>
+    <button class="filter-btn" data-cat="pool">สระว่ายน้ำ</button>
+  </div>
+
+
+</div>
+
+<div class="results-bar">
+  <span>แสดง <span class="results-count" id="resultCount">0</span> รายการ</span>
+  <span style="font-size:11px; display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;">
+    <span><span style="color:var(--green); font-weight:700">■</span> <span style="color:var(--green)">ราคาขาย P1</span></span>
+    <span><span style="color:var(--red); font-weight:700">■</span> <span style="color:var(--red)">ไม่ต่ำกว่า P6</span></span>
+  </span>
+</div>
+
+<div class="discount-box" id="discountBox">
+  <h3>🏷 ส่วนลดเพิ่มเติมนอก Platform</h3>
+  <div class="discount-row"><span class="range">ยอดขาย 150,000–200,000 บาท</span><span class="pct">ลดเพิ่ม 2% จากตัวแดง</span></div>
+  <div class="discount-row"><span class="range">ยอดขาย 200,001–300,000 บาท</span><span class="pct">ลดเพิ่ม 3% จากตัวแดง</span></div>
+  <div class="discount-row"><span class="range">ยอดขาย 300,001–400,000 บาท</span><span class="pct">ลดเพิ่ม 4% จากตัวแดง</span></div>
+  <div class="discount-row"><span class="range">ยอดขาย 400,001 บาทขึ้นไป</span><span class="pct">ลดเพิ่ม 5% จากตัวแดง</span></div>
+</div>
+
+
+
+
+<div class="main" id="mainContent"></div>
+
+<script>
+// ============================================================
+// DATA: [no, code, priceP1, minPrice, minQty, note, category, isNew]
+// priceP1 = ราคา Platform (ตัวแดง)
+// minPrice = ราคาขั้นต่ำ (นอก Platform / ไม่ต่ำกว่า)
+// ============================================================
+const PRODUCTS = [
+  // ── TABLE ──
+  {no:1, code:"Mant16T",          p1:8999,   min:8549.05, qty:10, note:"Group A 5%",  cat:"table"},
+  {no:2, code:"Mant-18T",         p1:10900,  min:10355,   qty:10, note:"Group A 5%",  cat:"table"},
+  {no:3, code:"Moss-16T",         p1:8900,   min:8455,    qty:10, note:"Group A 5%",  cat:"table"},
+  {no:4, code:"Mint-13T",         p1:10500,  min:9975,    qty:10, note:"Group A 5%",  cat:"table"},
+  {no:5, code:"Mint-16T",         p1:12500,  min:11875,   qty:10, note:"Group A 5%",  cat:"table"},
+  {no:6, code:"Mint-18T",         p1:14900,  min:14155,   qty:10, note:"Group A 5%",  cat:"table"},
+  {no:7, code:"Rose-16T",         p1:14900,  min:14155,   qty:10, note:"Group A 5%",  cat:"table"},
+  {no:8, code:"Rose-18T",         p1:16900,  min:16055,   qty:10, note:"Group A 5%",  cat:"table"},
+  {no:9, code:"Romeo-12T",        p1:3899,   min:3704.05, qty:10, note:"Group A 5%",  cat:"table"},
+  {no:10,code:"Romeo-14T",        p1:4199,   min:3989.05, qty:10, note:"Group A 5%",  cat:"table"},
+  {no:11,code:"Hamony-16T",       p1:26000,  min:24700,   qty:3,  note:"Group C 4%",  cat:"table"},
+  {no:12,code:"Mia-16T R",        p1:20900,  min:19855,   qty:3,  note:"Group C 4%",  cat:"table"},
+  {no:13,code:"Cara-16T R",       p1:21900,  min:20805,   qty:3,  note:"Group C 4%",  cat:"table"},
+  {no:14,code:"Violet-16T R",     p1:25900,  min:24605,   qty:3,  note:"Group C 4%",  cat:"table"},
+  {no:15,code:"Aluminum C01",     p1:960,    min:912,     qty:10, note:"",             cat:"table"},
+  {no:16,code:"Aluminum C02",     p1:960,    min:912,     qty:10, note:"",             cat:"table"},
+  {no:17,code:"T-SS-13T",         p1:6300,   min:5985,    qty:5,  note:"Group B 4.5%",cat:"table"},
+  {no:18,code:"T-SN-13T",         p1:5800,   min:5510,    qty:5,  note:"Group B 4.5%",cat:"table"},
+  {no:19,code:"T-SN-16T",         p1:7950,   min:7552.5,  qty:5,  note:"Group B 4.5%",cat:"table"},
+  {no:20,code:"T-IRON-13T",       p1:5200,   min:4940,    qty:5,  note:"Group B 4.5%",cat:"table"},
+  {no:21,code:"T-IRON-16T",       p1:7050,   min:6697.5,  qty:5,  note:"Group B 4.5%",cat:"table"},
+  {no:22,code:"Mant13T",          p1:5999,   min:5729.05, qty:10, note:"Group A 5%",  cat:"table"},
+  {no:23,code:"Lilly-13T",        p1:5999,   min:5729.05, qty:10, note:"Group A 5%",  cat:"table"},
+  {no:24,code:"Luna-13T",         p1:5999,   min:5729.05, qty:10, note:"Group A 5%",  cat:"table"},
+  {no:25,code:"Rose-13T",         p1:13900,  min:13274.5, qty:10, note:"Group A 5%",  cat:"table"},
+  {no:26,code:"Olivia-20T R",     p1:32900,  min:31419.5, qty:3,  note:"Group C 4%",  cat:"table"},
+  {no:27,code:"Lucy-125T",        p1:15500,  min:14802.5, qty:1,  note:"",             cat:"table"},
+  {no:28,code:"Lucy-150T",        p1:20900,  min:19959.5, qty:1,  note:"",             cat:"table"},
+  {no:29,code:"T-out",            p1:677,    min:646.54,  qty:10, note:"",             cat:"table"},
+  {no:30,code:"Jolie20T",         p1:29300,  min:27981.5, qty:2,  note:"Group D 3%",  cat:"table"},
+  {no:31,code:"Jolie-24T",        p1:31400,  min:29987,   qty:2,  note:"Group D 3%",  cat:"table"},
+  {no:32,code:"Josept-20T",       p1:34590,  min:33033.45,qty:2,  note:"Group D 3%",  cat:"table"},
+  {no:33,code:"Rossy-15T",        p1:11680,  min:11154.4, qty:5,  note:"",             cat:"table"},
+  {no:34,code:"Rossy-18T",        p1:12850,  min:12271.75,qty:5,  note:"",             cat:"table"},
+  {no:35,code:"Logan-16T",        p1:25000,  min:24000,   qty:2,  note:"",             cat:"table"},
+  {no:36,code:"Logan-20T",        p1:31900,  min:30624,   qty:2,  note:"",             cat:"table"},
+  {no:37,code:"Charlotte-16T N",  p1:27900,  min:26784,   qty:2,  note:"",             cat:"table"},
+  {no:38,code:"Charlotte-20T N",  p1:31900,  min:30624,   qty:2,  note:"",             cat:"table"},
+  {no:39,code:"Charlotte-16T R",  p1:34900,  min:33504,   qty:2,  note:"",             cat:"table"},
+  {no:40,code:"Charlotte-20T R",  p1:38900,  min:37344,   qty:2,  note:"",             cat:"table"},
+  {no:41,code:"Olivia-16T R",     p1:25900,  min:24864,   qty:2,  note:"",             cat:"table"},
+  {no:42,code:"Aya-125T R",       p1:17050,  min:16368,   qty:2,  note:"",             cat:"table"},
+  {no:43,code:"Aya-150T R",       p1:21500,  min:20640,   qty:2,  note:"",             cat:"table"},
+  {no:44,code:"Bailey-20T",       p1:17400,  min:16704,   qty:2,  note:"",             cat:"table"},
+  {no:45,code:"Bailey-16T",       p1:15400,  min:14784,   qty:2,  note:"",             cat:"table"},
+  {no:46,code:"Baylor-18T",       p1:17600,  min:16896,   qty:2,  note:"",             cat:"table"},
+  {no:47,code:"Black-20T",        p1:18400,  min:17664,   qty:2,  note:"",             cat:"table"},
+  {no:48,code:"Black-16T",        p1:17000,  min:16320,   qty:2,  note:"",             cat:"table"},
+  {no:49,code:"Bella-20T",        p1:18400,  min:17664,   qty:2,  note:"",             cat:"table"},
+  {no:50,code:"Bella-16T",        p1:16700,  min:16032,   qty:2,  note:"",             cat:"table"},
+  {no:51,code:"Bonnie-22T",       p1:22800,  min:21888,   qty:2,  note:"",             cat:"table"},
+  {no:52,code:"Brook-125T",       p1:12820,  min:12307.2, qty:2,  note:"",             cat:"table"},
+  {no:53,code:"EVE-16T gold R",   p1:22900,  min:21984,   qty:3,  note:"Group C 4%",  cat:"table"},
+  {no:54,code:"EVE-16T titanium R",p1:22900, min:21984,   qty:3,  note:"Group C 4%",  cat:"table"},
+  {no:55,code:"T-001-MARBLE-WH-C-60",p1:2130,min:2044.8, qty:5,  note:"",             cat:"table"},
+  {no:56,code:"T-001-MARBLE-WH-C-80",p1:3100,min:2976,   qty:5,  note:"",             cat:"table"},
+  {no:57,code:"T-010",            p1:1990,   min:1930.3,  qty:10, note:"",             cat:"table"},
+  {no:58,code:"T-011",            p1:2300,   min:2231,    qty:10, note:"",             cat:"table"},
+  {no:59,code:"T-012",            p1:1990,   min:1930.3,  qty:10, note:"",             cat:"table"},
+  {no:60,code:"Moss-13T",         p1:6900,   min:6693,    qty:10, note:"",             cat:"table"},
+  {no:61,code:"T-Catering-12T-OMEGA",p1:1590,min:1542.3, qty:20, note:"",             cat:"table"},
+  {no:62,code:"T-Catering-15T-OMEGA",p1:2290,min:2221.3, qty:20, note:"",             cat:"table"},
+  {no:63,code:"T-Catering-18T-OMEGA",p1:3090,min:2997.3, qty:20, note:"",             cat:"table"},
+  {no:64,code:"T-Catering-12T-HDPE",p1:1550, min:1503.5, qty:20, note:"",             cat:"table"},
+  {no:65,code:"T-Catering-15T-HDPE",p1:2150, min:2085.5, qty:20, note:"",             cat:"table"},
+  {no:66,code:"T-Glass-C60",      p1:700,    min:679,     qty:10, note:"",             cat:"table"},
+  {no:67,code:"T-Glass-C70",      p1:810,    min:785.7,   qty:10, note:"",             cat:"table"},
+  {no:68,code:"T-Glass-C80",      p1:910,    min:882.7,   qty:10, note:"",             cat:"table"},
+  {no:69,code:"T-012-wood-LBN-60",p1:1480,   min:1435.6,  qty:20, note:"",             cat:"table"},
+  {no:70,code:"T-012-wood-BN-60", p1:1480,   min:1435.6,  qty:20, note:"",             cat:"table"},
+  {no:71,code:"T-012-wood-DBN-80",p1:2200,   min:2134,    qty:20, note:"",             cat:"table"},
+  {no:72,code:"T-012-wood-LBN-80",p1:2200,   min:2134,    qty:20, note:"",             cat:"table"},
+  {no:73,code:"T-013-Wood-LBN-60",p1:1480,   min:1435.6,  qty:20, note:"",             cat:"table"},
+  {no:74,code:"T-013-wood-BN-60", p1:1480,   min:1435.6,  qty:20, note:"",             cat:"table"},
+  {no:75,code:"T-013-Wood-LBN-80",p1:2200,   min:2134,    qty:20, note:"",             cat:"table"},
+  {no:76,code:"T-014-Wood-LBN-100",p1:2250,  min:2182.5,  qty:20, note:"",             cat:"table"},
+  {no:77,code:"T-014-wood-BN-100",p1:2250,   min:2182.5,  qty:20, note:"",             cat:"table"},
+  {no:78,code:"T-014-Wood-LBN-120",p1:2450,  min:2376.5,  qty:20, note:"",             cat:"table"},
+  {no:79,code:"T-014-wood-BN-120",p1:2450,   min:2376.5,  qty:20, note:"",             cat:"table"},
+  {no:80,code:"T-015-Wood-LBN-90",p1:3450,   min:3346.5,  qty:20, note:"",             cat:"table"},
+  {no:81,code:"T-015-Wood-BN-90", p1:3450,   min:3346.5,  qty:20, note:"",             cat:"table"},
+  {no:82,code:"T-CRUZ-15T/L",     p1:1500,   min:1455,    qty:10, note:"",             cat:"table"},
+  {no:83,code:"M-CRUZ-15T-S-WH-1.8",p1:1590,min:1542.3,  qty:10, note:"",             cat:"table"},
+  {no:84,code:"M-CRUZ-15T-S-BK-1.8",p1:1590,min:1542.3,  qty:10, note:"",             cat:"table"},
+  {no:85,code:"T-FMG-12T-BK-TH",  p1:1100,   min:1067,    qty:null,note:"NEW 15-May", cat:"table", isNew:true},
+  {no:86,code:"T-FMG-15T-BK-TH",  p1:1350,   min:1309.5,  qty:null,note:"NEW 15-May", cat:"table", isNew:true},
+  {no:87,code:"T-FMG-18T-BK-TH",  p1:1480,   min:1435.6,  qty:null,note:"NEW 15-May", cat:"table", isNew:true},
+  {no:88,code:"T-MLM-12T-SV-TH",  p1:1470,   min:1425.9,  qty:null,note:"NEW 15-May", cat:"table", isNew:true},
+  {no:89,code:"T-MLM-15T-SV-TH",  p1:1780,   min:1726.6,  qty:null,note:"NEW 15-May", cat:"table", isNew:true},
+  {no:90,code:"T-MLM-18T-SV-TH",  p1:1890,   min:1833.3,  qty:null,note:"NEW 15-May", cat:"table", isNew:true},
+
+  // ── MARBLE TOP ──
+  {no:1, code:"M-R 130M",      p1:4100,  min:3895,   qty:3, note:"M-R series", cat:"marble"},
+  {no:2, code:"M-R 160M",      p1:5750,  min:5462.5, qty:3, note:"M-R series", cat:"marble"},
+  {no:3, code:"M-R 180M",      p1:6500,  min:6175,   qty:3, note:"M-R series", cat:"marble"},
+  {no:4, code:"M-R 200M",      p1:7000,  min:6650,   qty:3, note:"M-R series", cat:"marble"},
+  {no:5, code:"M-P 130M",      p1:4800,  min:4560,   qty:3, note:"M-P series", cat:"marble"},
+  {no:6, code:"M-P 160M",      p1:7000,  min:6650,   qty:3, note:"M-P series", cat:"marble"},
+  {no:7, code:"M-P 180M",      p1:7900,  min:7505,   qty:3, note:"M-P series", cat:"marble"},
+  {no:8, code:"M-P 200M",      p1:9500,  min:9025,   qty:3, note:"M-P series", cat:"marble"},
+  {no:9, code:"M-P 210-220M",  p1:9800,  min:9310,   qty:3, note:"M-P series", cat:"marble"},
+  {no:10,code:"M-P 240M",      p1:10800, min:10260,  qty:3, note:"M-P series", cat:"marble"},
+  {no:11,code:"หินกลม 1.8 120M",p1:6500, min:6175,  qty:3, note:"",           cat:"marble"},
+  {no:12,code:"หินกลม 1.8 125M",p1:7000, min:6650,  qty:3, note:"",           cat:"marble"},
+  {no:13,code:"หินกลม 1.8 150M",p1:10000,min:9500,  qty:3, note:"",           cat:"marble"},
+  {no:14,code:"หินกลม 3.6 120M",p1:7000, min:6650,  qty:3, note:"",           cat:"marble"},
+  {no:15,code:"หินกลม 3.6 125M",p1:7500, min:7125,  qty:3, note:"",           cat:"marble"},
+  {no:16,code:"หินกลม 3.6 150M",p1:10750,min:10212.5,qty:3,note:"",           cat:"marble"},
+  {no:17,code:"หินจานหมุน 65CM",p1:1950, min:1852.5,qty:3, note:"",           cat:"marble"},
+  {no:18,code:"หินจานหมุน 75CM",p1:2500, min:2375,  qty:3, note:"",           cat:"marble"},
+
+  // ── CHAIR ──
+  {no:1, code:"C-CAFÉ",          p1:1389, min:1319,  qty:20,  note:"Group A 5%", cat:"chair"},
+  {no:2, code:"Mint (Chair)",    p1:2000, min:1928,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:3, code:"Rose (Chair)",    p1:2000, min:1928,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:4, code:"Mia / Cara",      p1:4433, min:4274,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:5, code:"C-out",           p1:598,  min:576,   qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:6, code:"Mant (Chair)",    p1:2167, min:2089,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:7, code:"Rossy 15",        p1:2667, min:2571,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:8, code:"Premium ขาไม้",   p1:4433, min:4274,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:9, code:"Boom หนัง",       p1:1100, min:1060,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:10,code:"Anny ผ้า",        p1:1100, min:1060,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:11,code:"Moss/Lucy",        p1:2778, min:2678,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:12,code:"Aluminium Silver", p1:1089, min:1050,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:13,code:"Aluminium Dark Brown",p1:989,min:953,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:14,code:"Stainless C01",   p1:767,  min:739,   qty:100, note:"Group A 4%", cat:"chair"},
+  {no:15,code:"Stainless C02",   p1:767,  min:739,   qty:100, note:"Group A 4%", cat:"chair"},
+  {no:16,code:"C-Josept",        p1:4767, min:4595,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:17,code:"C-Jess",          p1:2278, min:2196,  qty:20,  note:"Group A 4%", cat:"chair"},
+  {no:18,code:"C-Wood-02-BN",    p1:722,  min:696,   qty:20,  note:"",           cat:"chair"},
+  {no:19,code:"C-WOOD-03-LBN-G", p1:1389, min:1339,  qty:20,  note:"",           cat:"chair"},
+  {no:20,code:"C-Wood-04-LBN",   p1:722,  min:696,   qty:20,  note:"",           cat:"chair"},
+  {no:21,code:"C-Wood-05-DBN",   p1:810,  min:781,   qty:20,  note:"",           cat:"chair"},
+  {no:22,code:"C-Wood-06-BN",    p1:810,  min:781,   qty:20,  note:"",           cat:"chair"},
+  {no:23,code:"C-Wood-07-LBN-GY",p1:944,  min:910,   qty:20,  note:"",           cat:"chair"},
+  {no:24,code:"C-Wood-08-LBN-BN",p1:1389, min:1339,  qty:20,  note:"",           cat:"chair"},
+  {no:25,code:"C-Crossback",     p1:1056, min:1018,  qty:20,  note:"มีเบาะในตัว",cat:"chair"},
+  {no:26,code:"C-COSMO",         p1:2033, min:1960,  qty:20,  note:"",           cat:"chair"},
+  {no:27,code:"C-CARMEN",        p1:1811, min:1746,  qty:20,  note:"",           cat:"chair"},
+  {no:28,code:"C-SELENA",        p1:5433, min:5238,  qty:20,  note:"",           cat:"chair"},
+  {no:29,code:"C-ELI-F-LGY",     p1:944,  min:910,   qty:50,  note:"",           cat:"chair"},
+  {no:30,code:"C-LION",          p1:2556, min:2464,  qty:20,  note:"",           cat:"chair"},
+  {no:31,code:"C-VOLA",          p1:2778, min:2678,  qty:20,  note:"",           cat:"chair"},
+  {no:32,code:"C-KATE",          p1:2111, min:2035,  qty:20,  note:"",           cat:"chair"},
+  {no:33,code:"C-NIKO",          p1:5389, min:5195,  qty:20,  note:"",           cat:"chair"},
+  {no:34,code:"Catering C03 A",  p1:989,  min:962,   qty:100, note:"Group B 3%", cat:"chair"},
+  {no:35,code:"Catering C04 A",  p1:989,  min:962,   qty:100, note:"Group B 3%", cat:"chair"},
+  {no:36,code:"Catering C05 A",  p1:989,  min:962,   qty:100, note:"Group B 3%", cat:"chair"},
+  {no:37,code:"Catering C07 A",  p1:989,  min:962,   qty:100, note:"Group B 3%", cat:"chair"},
+  {no:38,code:"Catering C08 A",  p1:989,  min:962,   qty:100, note:"Group B 3%", cat:"chair"},
+  {no:39,code:"Catering C09 A",  p1:989,  min:962,   qty:100, note:"Group B 3%", cat:"chair"},
+  {no:40,code:"Catering C10 A",  p1:989,  min:962,   qty:100, note:"Group B 3%", cat:"chair"},
+  {no:41,code:"C-EVE",           p1:2333, min:2270,  qty:20,  note:"Group B 3%", cat:"chair"},
+  {no:42,code:"C-Iris",          p1:2111, min:2054,  qty:20,  note:"Group B 3%", cat:"chair"},
+  {no:43,code:"C-Grace",         p1:2767, min:2692,  qty:20,  note:"Group B 3%", cat:"chair"},
+  {no:44,code:"C-Ava",           p1:1667, min:1622,  qty:20,  note:"Group B 3%", cat:"chair"},
+  {no:45,code:"C-Bubble",        p1:3167, min:3081,  qty:20,  note:"Group B 3%", cat:"chair"},
+  {no:46,code:"C-Olivia",        p1:4944, min:4811,  qty:20,  note:"Group B 3%", cat:"chair"},
+  {no:47,code:"C-CODY",          p1:644,  min:627,   qty:20,  note:"Group B 3%", cat:"chair"},
+  {no:48,code:"Catering C03-P",  p1:767,  min:746,   qty:100, note:"",           cat:"chair"},
+  {no:49,code:"Catering C04-P",  p1:794,  min:773,   qty:100, note:"",           cat:"chair"},
+  {no:50,code:"Catering C05-P",  p1:732,  min:712,   qty:100, note:"",           cat:"chair"},
+  {no:51,code:"Catering C06-P",  p1:643,  min:626,   qty:100, note:"",           cat:"chair"},
+  {no:52,code:"C-Wood-01-BN",    p1:944,  min:919,   qty:20,  note:"",           cat:"chair"},
+  {no:53,code:"C-Bentwood",      p1:989,  min:962,   qty:100, note:"",           cat:"chair"},
+  {no:54,code:"C-BARON-LE-BN",   p1:722,  min:703,   qty:20,  note:"",           cat:"chair"},
+  {no:55,code:"C-BRONZE-LE-OR",  p1:711,  min:692,   qty:20,  note:"",           cat:"chair"},
+  {no:56,code:"C-BOSS-LE-WH",    p1:722,  min:703,   qty:20,  note:"",           cat:"chair"},
+  {no:57,code:"C-BELL-LE-OR",    p1:833,  min:811,   qty:20,  note:"",           cat:"chair"},
+  {no:58,code:"C-BEAU-LE-YW",    p1:767,  min:746,   qty:20,  note:"",           cat:"chair"},
+  {no:59,code:"C-BAR-01-V-GD-WH",p1:2767, min:2692,  qty:20,  note:"",           cat:"chair"},
+  {no:60,code:"C-BAR-02-V-GD-DGY",p1:3644,min:3546,  qty:20,  note:"",           cat:"chair"},
+  {no:61,code:"C-CRUZ-V-DGY",    p1:1110, min:1080,  qty:20,  note:"",           cat:"chair"},
+  {no:62,code:"C-CRUZ-V-RD",     p1:1110, min:1080,  qty:20,  note:"",           cat:"chair"},
+  {no:63,code:"C-BQ1-LE-SV-BN-TH",p1:685,min:667,   qty:10,  note:"NEW 15-May", cat:"chair",isNew:true},
+  {no:64,code:"C-BQ2-LE-SV-BL-TH",p1:898,min:874,   qty:10,  note:"NEW 15-May", cat:"chair",isNew:true},
+  {no:65,code:"C-BQ5-LE-SV-BK-TH",p1:638,min:622,   qty:10,  note:"NEW 15-May", cat:"chair",isNew:true},
+  {no:66,code:"C-BQ5-F-BK-DGY-MJ",p1:678,min:660,   qty:10,  note:"NEW 15-May", cat:"chair",isNew:true},
+  {no:67,code:"C-BQ5-F-BK-LGY-MJ",p1:678,min:660,   qty:10,  note:"NEW 15-May", cat:"chair",isNew:true},
+  {no:68,code:"Rossy18 ขาไม้",   p1:3322, min:3262,  qty:20,  note:"Group C 2%", cat:"chair"},
+  {no:69,code:"Rossy 18 ขาเหล็ก",p1:2989, min:2989,  qty:20,  note:"Group C 2%", cat:"chair"},
+  {no:70,code:"Loha",             p1:611,  min:600,   qty:50,  note:"Group C 2%", cat:"chair"},
+  {no:71,code:"Banquet ทอง+ผ้า", p1:528,  min:518,   qty:50,  note:"Group C 2%", cat:"chair"},
+  {no:72,code:"Banquet ดำ+ผ้า",  p1:543,  min:534,   qty:50,  note:"Group C 2%", cat:"chair"},
+  {no:73,code:"Banquet ดำ+หนัง", p1:644,  min:633,   qty:50,  note:"Group C 2%", cat:"chair"},
+  {no:74,code:"Banquet กำมะหยี่", p1:606,  min:595,   qty:50,  note:"Group C 2%", cat:"chair"},
+  {no:75,code:"Banquet ผ้าลาย",  p1:628,  min:616,   qty:50,  note:"Group C 2%", cat:"chair"},
+  {no:76,code:"DIY",              p1:399,  min:392,   qty:100, note:"Group C 2%", cat:"chair"},
+  {no:77,code:"C-Toffy",          p1:1644, min:1615,  qty:20,  note:"Group C 2%", cat:"chair"},
+  {no:78,code:"C-Aurora",         p1:3211, min:3153,  qty:20,  note:"Group C 2%", cat:"chair"},
+  {no:79,code:"Candy C01-C04",    p1:1644, min:1615,  qty:20,  note:"Group C 2%", cat:"chair"},
+  {no:80,code:"Candy C05 pink 1+1",p1:1544,min:1517, qty:20,  note:"Group C 2%", cat:"chair"},
+  {no:81,code:"Candy C05 Pink 2+2",p1:1433,min:1408, qty:20,  note:"Group C 2%", cat:"chair"},
+  {no:82,code:"Banquet-LE-SV",    p1:850,  min:839,   qty:100, note:"Group C 2%", cat:"chair"},
+  {no:83,code:"Catering-Gold",    p1:777,  min:763,   qty:50,  note:"Group C 2%", cat:"chair"},
+  {no:84,code:"Catering-White",   p1:828,  min:813,   qty:50,  note:"Group C 2%", cat:"chair"},
+
+  // ── BED ──
+  {no:1, code:"Pre-Bed-Victoria",  p1:19300, min:18570, qty:5, note:"6FT; 5FT=17,800/17,220", cat:"bed"},
+  {no:2, code:"Pre-Bed-Vida",      p1:18300, min:17670, qty:5, note:"6FT; 5FT=16,800/16,320", cat:"bed"},
+  {no:3, code:"Pre-Bed-Vivain",    p1:20300, min:19470, qty:5, note:"6FT; 5FT=18,800/18,120", cat:"bed"},
+  {no:4, code:"Pre-Bed-Ashley",    p1:23800, min:22620, qty:5, note:"6FT; 5FT=22,300/21,270", cat:"bed"},
+  {no:5, code:"Pre-Bed-Ava",       p1:18399, min:17759.1,qty:5,note:"6FT; 5FT=16,899/16,409",cat:"bed"},
+  {no:6, code:"Pre-Bed-Anna",      p1:18399, min:17759.1,qty:5,note:"6FT; 5FT=16,899/16,409",cat:"bed"},
+  {no:7, code:"Pre-Bed-Kira",      p1:22700, min:21630, qty:5, note:"6FT; 5FT=21,200/20,280", cat:"bed"},
+  {no:8, code:"Pre-Bed-Kris",      p1:18300, min:17670, qty:5, note:"6FT; 5FT=16,800/16,320", cat:"bed"},
+  {no:9, code:"Pre-Bed-Katherine", p1:18300, min:17670, qty:5, note:"6FT; 5FT=16,800/16,320", cat:"bed"},
+  {no:10,code:"Pre-Bed-Jane",      p1:18300, min:17670, qty:5, note:"6FT; 5FT=16,800/16,320", cat:"bed"},
+  {no:11,code:"Pre-Bed-Judy",      p1:19300, min:18570, qty:5, note:"6FT; 5FT=17,800/17,220", cat:"bed"},
+  {no:12,code:"Pre-Bed-Jessica",   p1:21300, min:20370, qty:5, note:"6FT; 5FT=19,800/19,020", cat:"bed"},
+  {no:13,code:"Pre-Bed-Ginny",     p1:18300, min:17670, qty:5, note:"6FT; 5FT=16,800/16,320", cat:"bed"},
+  {no:14,code:"Pre-Bed-Gabriella", p1:17600, min:17040, qty:5, note:"6FT; 5FT=16,100/15,690", cat:"bed"},
+  {no:15,code:"Pre-Bed-Gianna",    p1:20300, min:19470, qty:5, note:"6FT; 5FT=18,800/18,120", cat:"bed"},
+  {no:16,code:"Pre-Sophie",        p1:20100, min:19290, qty:5, note:"6FT; 5FT=18,600/17,940", cat:"bed"},
+  {no:17,code:"Pre-Paino",         p1:18700, min:18030, qty:5, note:"6FT; 5FT=17,200/16,680", cat:"bed"},
+  {no:18,code:"FUR-BED-LOUIS-GD",  p1:9800,  min:8820,  qty:5, note:"",                       cat:"bed"},
+  {no:19,code:"FUR-BED-LOUIS-WH",  p1:9800,  min:8820,  qty:5, note:"",                       cat:"bed"},
+  {no:20,code:"FUR-BED Jasmine 01",p1:10300, min:9270,  qty:5, note:"",                       cat:"bed"},
+  {no:21,code:"FUR-BED-LOUIS-WH PK5",p1:9500,min:8550, qty:5, note:"",                       cat:"bed"},
+  {no:22,code:"FUR-BED JANE 01",   p1:7900,  min:7110,  qty:5, note:"",                       cat:"bed"},
+  {no:23,code:"FUR-BED Vivian 01", p1:7600,  min:6840,  qty:5, note:"",                       cat:"bed"},
+  {no:24,code:"FUR-BED Jade 01",   p1:7600,  min:6840,  qty:5, note:"",                       cat:"bed"},
+  // Mattress
+  {no:1, code:"Sonya 9 นิ้ว (6FT)",p1:7800, min:7410,  qty:1, note:"รับประกัน 10 ปี",        cat:"bed"},
+  {no:2, code:"Lucky 11 นิ้ว (6FT)",p1:10500,min:9975, qty:1, note:"รับประกัน 10 ปี",        cat:"bed"},
+  {no:1, code:"FUR-Honey 01",      p1:10400, min:9672,  qty:1, note:"โซฟา/เก้าอี้นวด",        cat:"bed"},
+  {no:2, code:"FUR-Honey 02",      p1:13800, min:12834, qty:1, note:"โซฟา/เก้าอี้นวด",        cat:"bed"},
+  {no:3, code:"FUR-Honey 03",      p1:15800, min:14694, qty:1, note:"โซฟา/เก้าอี้นวด",        cat:"bed"},
+
+  // ── FURNITURE ──
+  {no:1, code:"FUR-sidebed 01",     p1:1950,  min:1891.5, qty:null,note:"ซื้อคู่ 2 ตัว 3,650 บาท", cat:"furniture"},
+  {no:2, code:"FUR-Mirror 01",      p1:3800,  min:3686,   qty:null,note:"",                         cat:"furniture"},
+  {no:3, code:"FUR-Dressing-01-WH", p1:5800,  min:5626,   qty:null,note:"กำมะหยี่ชมพู",             cat:"furniture"},
+  {no:4, code:"FUR-Dressing-02-WH", p1:5800,  min:5626,   qty:null,note:"หนังสีขาว",               cat:"furniture"},
+  {no:5, code:"FUR-Dressing-03-WH", p1:9500,  min:9215,   qty:null,note:"กำมะหยี่ชมพู",             cat:"furniture"},
+  {no:6, code:"FUR-WARDROBE-01-WH", p1:17900, min:17363,  qty:null,note:"",                         cat:"furniture"},
+  {no:7, code:"FUR-WARDROBE-02-WH", p1:16200, min:15714,  qty:null,note:"",                         cat:"furniture"},
+  {no:8, code:"FUR-WARDROBE-03-WH", p1:14800, min:14356,  qty:null,note:"",                         cat:"furniture"},
+  {no:1, code:"FUR-Sofa 145",       p1:6800,  min:6256,   qty:null,note:"NCR 1 (25 Nov 2025)",      cat:"furniture"},
+  {no:2, code:"FUR-Sofa 175",       p1:7900,  min:7268,   qty:null,note:"NCR 1 (25 Nov 2025)",      cat:"furniture"},
+  {no:3, code:"FUR-Mini sofa",      p1:2350,  min:2162,   qty:null,note:"NCR 1 (25 Nov 2025)",      cat:"furniture"},
+  {no:1, code:"EQ-CUSHION",         p1:150,   min:138,    qty:null,note:"เบาะรองนั่ง",               cat:"furniture"},
+
+  // ── LAMP & PICTURE ──
+  {no:1, code:"LAMP-S-01",  p1:329,  min:309.26, qty:null, note:"Discount 6%", cat:"lamp"},
+  {no:2, code:"LAMP-S-02",  p1:329,  min:309.26, qty:null, note:"Discount 6%", cat:"lamp"},
+  {no:3, code:"LAMP-S-03",  p1:329,  min:309.26, qty:null, note:"Discount 6%", cat:"lamp"},
+  {no:4, code:"LAMP-S-04",  p1:329,  min:309.26, qty:null, note:"Discount 6%", cat:"lamp"},
+  {no:5, code:"Lamp-H-01",  p1:1140, min:1071.6, qty:null, note:"Discount 6%", cat:"lamp"},
+  {no:6, code:"Lamp-H-02",  p1:1140, min:1071.6, qty:null, note:"Discount 6%", cat:"lamp"},
+  {no:7, code:"Lamp-H-03",  p1:1140, min:1071.6, qty:null, note:"Discount 6%", cat:"lamp"},
+  {no:1, code:"Picture01",  p1:899,  min:809.1,  qty:null, note:"Discount 10%", cat:"lamp"},
+  {no:2, code:"Picture02",  p1:999,  min:899.1,  qty:null, note:"Discount 10%", cat:"lamp"},
+  {no:3, code:"Picture03",  p1:999,  min:899.1,  qty:null, note:"Discount 10%", cat:"lamp"},
+  {no:4, code:"Picture04",  p1:999,  min:899.1,  qty:null, note:"Discount 10%", cat:"lamp"},
+  {no:5, code:"Picture05",  p1:999,  min:899.1,  qty:null, note:"Discount 10%", cat:"lamp"},
+  {no:6, code:"Picture06",  p1:999,  min:899.1,  qty:null, note:"Discount 10%", cat:"lamp"},
+  {no:7, code:"Picture07",  p1:999,  min:899.1,  qty:null, note:"Discount 10%", cat:"lamp"},
+  {no:8, code:"Picture08",  p1:999,  min:899.1,  qty:null, note:"Discount 10%", cat:"lamp"},
+
+  // ── SHOE CABINET ──
+  {no:1, code:"SHC-4 layer",          p1:3390, min:3254.4, qty:null, note:"",       cat:"shoe"},
+  {no:2, code:"SHC-6 layer",          p1:4700, min:4512,   qty:null, note:"",       cat:"shoe"},
+  {no:3, code:"SHC-8 layer",          p1:6540, min:6409.2, qty:null, note:"",       cat:"shoe"},
+  {no:4, code:"SHC-4 layer บานลอน",  p1:3620, min:3475.2, qty:null, note:"",       cat:"shoe"},
+  {no:5, code:"SHC-6 layer บานลอน",  p1:5130, min:4924.8, qty:null, note:"",       cat:"shoe"},
+  {no:6, code:"SHC-8 layer บานลอน",  p1:6780, min:6644.4, qty:null, note:"",       cat:"shoe"},
+  {no:7, code:"SHC-4 layer Mirror",   p1:3390, min:3254.4, qty:null, note:"",       cat:"shoe"},
+  {no:8, code:"SHC-6 layer Mirror",   p1:4700, min:4606,   qty:null, note:"",       cat:"shoe"},
+  {no:9, code:"SHC-8 layer Mirror",   p1:6540, min:6278.4, qty:null, note:"",       cat:"shoe"},
+  {no:10,code:"SHC-4-MARBLE ทุกสี",  p1:3590, min:3446.4, qty:null, note:"",       cat:"shoe"},
+  {no:11,code:"SHC-6-MARBLE ทุกสี",  p1:4900, min:4704,   qty:null, note:"",       cat:"shoe"},
+  {no:12,code:"SHC-8-MARBLE ทุกสี",  p1:6740, min:6470.4, qty:null, note:"",       cat:"shoe"},
+
+  // ── KID LANDDY ──
+  {no:1, code:"KD-BT-03-GN-0.8",       p1:295,  min:280,   qty:null, note:"", cat:"kid"},
+  {no:2, code:"KD-BT-03-CM-0.8",       p1:295,  min:280,   qty:null, note:"", cat:"kid"},
+  {no:3, code:"KD-PL-02-TQ",           p1:79,   min:75,    qty:null, note:"", cat:"kid"},
+  {no:4, code:"KD-PL-02-BL",           p1:79,   min:75,    qty:null, note:"", cat:"kid"},
+  {no:5, code:"KD-PL-02-GN",           p1:105,  min:100,   qty:null, note:"", cat:"kid"},
+  {no:6, code:"KD-PL-02-GY",           p1:105,  min:100,   qty:null, note:"", cat:"kid"},
+  {no:7, code:"KD-PL-01-GY",           p1:89,   min:85,    qty:null, note:"", cat:"kid"},
+  {no:8, code:"KD-OP-01-PK-0.8",       p1:330,  min:314,   qty:null, note:"", cat:"kid"},
+  {no:9, code:"KD-OP-01-GN-0.8",       p1:330,  min:314,   qty:null, note:"", cat:"kid"},
+  {no:10,code:"KD-BALL-01-LBL-0.6",    p1:129,  min:123,   qty:null, note:"", cat:"kid"},
+  {no:11,code:"KD-BALL-01-LBL-0.8",    p1:215,  min:204,   qty:null, note:"", cat:"kid"},
+  {no:12,code:"KD-BALL-01-LBL-15",     p1:615,  min:584,   qty:null, note:"", cat:"kid"},
+  {no:13,code:"KD-BALL-01-LBL-20",     p1:1135, min:1078,  qty:null, note:"", cat:"kid"},
+  {no:14,code:"KD-BALL-01-BK-0.6",     p1:129,  min:123,   qty:null, note:"", cat:"kid"},
+  {no:15,code:"KD-BALL-01-BK-0.8",     p1:210,  min:200,   qty:null, note:"", cat:"kid"},
+  {no:16,code:"KD-BALL-01-BK-10",      p1:335,  min:318,   qty:null, note:"", cat:"kid"},
+  {no:17,code:"KD-BALL-01-BK-15",      p1:615,  min:584,   qty:null, note:"", cat:"kid"},
+  {no:18,code:"KD-SWM-03-DBL-16",      p1:910,  min:865,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:19,code:"KD-SWM-03-DBL-18",      p1:1160, min:1102,  qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:20,code:"KD-SWM-03-DBL-21",      p1:1485, min:1411,  qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:21,code:"KD-SWM-03-DBL-26",      p1:1819, min:1728,  qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:22,code:"KD-SWM-04-WHDBL-18-3",  p1:510,  min:485,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:23,code:"KD-SWM-04-WHDBL-21-3",  p1:555,  min:527,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:24,code:"KD-SWM-04-WHDBL-26-3",  p1:715,  min:679,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:25,code:"KD-SWM-06-LBL-12-2",    p1:264,  min:251,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:26,code:"KD-SWM-06-LBL-15-2",    p1:296,  min:281,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:27,code:"KD-SWM-06-LBL-15-3",    p1:410,  min:390,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:28,code:"KD-SWM-01-GN-18-3",     p1:575,  min:546,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:29,code:"KD-SWM-01-GN-21-3",     p1:610,  min:580,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:30,code:"KD-SWM-01-GN-26-3",     p1:779,  min:740,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:31,code:"KD-SWM-04-WHDBL-12-2",  p1:185,  min:176,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:32,code:"KD-SWM-04-WHDBL-15-3",  p1:368,  min:350,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:33,code:"KD-SWM-01-GN-12-2",     p1:185,  min:176,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:34,code:"KD-SWM-01-GN-15-3",     p1:368,  min:350,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:35,code:"KD-SWM-05-LBL-12-2",    p1:185,  min:176,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:36,code:"KD-SWM-05-LBL-15-3",    p1:368,  min:350,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:37,code:"KD-SWM-02-ORGBL-12-2",  p1:185,  min:176,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+  {no:38,code:"KD-SWM-02-ORGBL-15-3",  p1:368,  min:350,   qty:null, note:"สระว่ายน้ำ", cat:"pool"},
+];
+
+const CAT_LABELS = {
+  table: "โต๊ะ (Table)",
+  marble: "หินอ่อน (Marble Top)",
+  chair: "เก้าอี้ (Chair)",
+  bed: "เตียงนอน (Bed & Mattress)",
+  furniture: "เฟอร์นิเจอร์ / โซฟา / ตู้",
+  lamp: "โคมไฟ & รูปภาพ",
+  shoe: "ตู้รองเท้า (Shoe Cabinet)",
+  kid: "Kid Landdy",
+  pool: "สระว่ายน้ำ (Pool)",
+};
+
+// Enrich products: add p1_plat, min_plat, p1_out, min_out
+// For chairs: platform prices (22 May) are higher than outside (15 May)
+// Chair price differences (22May vs 15May): approximate ~10-15% higher in platform list
+// The 22 May file is Platform ONLY - those p1/min values are the platform prices
+// The 15 May file has outside prices for chairs that differ
+// We store both sets. Same product = same p1/min in both files except chairs & some items
+
+// Chair outside prices (from 15 May PDF - นอก Platform)
+const CHAIR_OUT = {
+  "C-CAFÉ":             {p1:1250, min:1187.5},
+  "Mint (Chair)":       {p1:1800, min:1728},
+  "Rose (Chair)":       {p1:1800, min:1728},
+  "Mia / Cara":         {p1:3990, min:3830.4},
+  "C-out":              {p1:538,  min:516.48},
+  "Mant (Chair)":       {p1:1950, min:1872},
+  "Rossy 15":           {p1:2400, min:2304},
+  "Premium ขาไม้":     {p1:3990, min:3830.4},
+  "Boom หนัง":          {p1:990,  min:950.4},
+  "Anny ผ้า":           {p1:990,  min:950.4},
+  "Moss/Lucy":          {p1:2500, min:2400},
+  "Aluminium Silver":   {p1:980,  min:940.8},
+  "Aluminium Dark Brown":{p1:890, min:854.4},
+  "Stainless C01":      {p1:690,  min:662.4},
+  "Stainless C02":      {p1:690,  min:662.4},
+  "C-Josept":           {p1:4290, min:4118.4},
+  "C-Jess":             {p1:2050, min:1968},
+  "C-Wood-02-BN":       {p1:650,  min:624},
+  "C-WOOD-03-LBN-G":    {p1:1250, min:1200},
+  "C-Wood-04-LBN":      {p1:650,  min:624},
+  "C-Wood-05-DBN":      {p1:729,  min:699.84},
+  "C-Wood-06-BN":       {p1:729,  min:699.84},
+  "C-Wood-07-LBN-GY":   {p1:850,  min:816},
+  "C-Wood-08-LBN-BN":   {p1:1250, min:1200},
+  "C-Crossback":        {p1:950,  min:912},
+  "C-COSMO":            {p1:1830, min:1756.8},
+  "C-CARMEN":           {p1:1630, min:1564.8},
+  "C-SELENA":           {p1:4890, min:4694.4},
+  "C-ELI-F-LGY":        {p1:850,  min:816},
+  "C-LION":             {p1:2300, min:2208},
+  "C-VOLA":             {p1:2500, min:2400},
+  "C-KATE":             {p1:1900, min:1824},
+  "C-NIKO":             {p1:4850, min:4656},
+  "Catering C03 A":     {p1:890,  min:863.3},
+  "Catering C04 A":     {p1:890,  min:863.3},
+  "Catering C05 A":     {p1:890,  min:863.3},
+  "Catering C07 A":     {p1:890,  min:863.3},
+  "Catering C08 A":     {p1:890,  min:863.3},
+  "Catering C09 A":     {p1:890,  min:863.3},
+  "Catering C10 A":     {p1:890,  min:863.3},
+  "C-EVE":              {p1:2100, min:2037},
+  "C-Iris":             {p1:1900, min:1843},
+  "C-Grace":            {p1:2490, min:2415.3},
+  "C-Ava":              {p1:1500, min:1455},
+  "C-Bubble":           {p1:2850, min:2764.5},
+  "C-Olivia":           {p1:4450, min:4316.5},
+  "C-CODY":             {p1:580,  min:562.6},
+  "Catering C03-P":     {p1:690,  min:669.3},
+  "Catering C04-P":     {p1:715,  min:693.55},
+  "Catering C05-P":     {p1:659,  min:639.23},
+  "Catering C06-P":     {p1:579,  min:561.63},
+  "C-Wood-01-BN":       {p1:850,  min:824.5},
+  "C-Bentwood":         {p1:890,  min:863.3},
+  "C-BARON-LE-BN":      {p1:650,  min:630.5},
+  "C-BRONZE-LE-OR":     {p1:640,  min:620.8},
+  "C-BOSS-LE-WH":       {p1:650,  min:630.5},
+  "C-BELL-LE-OR":       {p1:750,  min:727.5},
+  "C-BEAU-LE-YW":       {p1:690,  min:669.3},
+  "C-BAR-01-V-GD-WH":   {p1:2490, min:2415.3},
+  "C-BAR-02-V-GD-DGY":  {p1:3280, min:3181.6},
+  "C-CRUZ-V-DGY":       {p1:999,  min:969.03},
+  "C-CRUZ-V-RD":        {p1:999,  min:969.03},
+  "C-BQ1-LE-SV-BN-TH":  {p1:589,  min:571.33},
+  "C-BQ2-LE-SV-BL-TH":  {p1:790,  min:766.3},
+  "C-BQ5-LE-SV-BK-TH":  {p1:540,  min:523.8},
+  "C-BQ5-F-BK-DGY-MJ":  {p1:610,  min:591.7},
+  "C-BQ5-F-BK-LGY-MJ":  {p1:610,  min:591.7},
+  "Rossy18 ขาไม้":      {p1:2990, min:2930.2},
+  "Rossy 18 ขาเหล็ก":   {p1:2690, min:2690},
+  "Loha":               {p1:550,  min:539},
+  "Banquet ทอง+ผ้า":    {p1:475,  min:465.5},
+  "Banquet ดำ+ผ้า":     {p1:489,  min:479.22},
+  "Banquet ดำ+หนัง":    {p1:580,  min:568.4},
+  "Banquet กำมะหยี่":    {p1:545,  min:534.1},
+  "Banquet ผ้าลาย":     {p1:565,  min:553.7},
+  "DIY":                {p1:359,  min:351.82},
+  "C-Toffy":            {p1:1480, min:1450.4},
+  "C-Aurora":           {p1:2890, min:2832.2},
+  "Candy C01-C04":      {p1:1480, min:1450.4},
+  "Candy C05 pink 1+1": {p1:1390, min:1362.2},
+  "Candy C05 Pink 2+2": {p1:1290, min:1264.2},
+  "Banquet-LE-SV":      {p1:760,  min:744.8},
+  "Catering-Gold":      {p1:699,  min:685.02},
+  "Catering-White":     {p1:745,  min:730.1},
+};
+
+// Kid Landdy outside prices (from 15 May - slightly lower)
+const KID_OUT = {
+  "KD-BT-03-GN-0.8":{p1:278,min:264.1},"KD-BT-03-CM-0.8":{p1:278,min:264.1},
+  "KD-PL-02-TQ":{p1:73,min:69.35},"KD-PL-02-BL":{p1:73,min:69.35},
+  "KD-PL-02-GN":{p1:97,min:92.15},"KD-PL-02-GY":{p1:97,min:92.15},
+  "KD-PL-01-GY":{p1:83,min:78.85},
+  "KD-OP-01-PK-0.8":{p1:313,min:297.35},"KD-OP-01-GN-0.8":{p1:313,min:297.35},
+  "KD-BALL-01-LBL-0.6":{p1:123,min:116.85},"KD-BALL-01-LBL-0.8":{p1:202,min:191.9},
+  "KD-BALL-01-LBL-15":{p1:583,min:553.85},"KD-BALL-01-LBL-20":{p1:1078,min:1024.1},
+  "KD-BALL-01-BK-0.6":{p1:123,min:116.85},"KD-BALL-01-BK-0.8":{p1:192,min:182.4},
+  "KD-BALL-01-BK-10":{p1:314,min:298.3},"KD-BALL-01-BK-15":{p1:583,min:553.85},
+};
+const POOL_OUT = {
+  "KD-SWM-03-DBL-16":{p1:856,min:813.2},"KD-SWM-03-DBL-18":{p1:1102,min:1046.9},
+  "KD-SWM-03-DBL-21":{p1:1408,min:1337.6},"KD-SWM-03-DBL-26":{p1:1727,min:1640.65},
+  "KD-SWM-04-WHDBL-18-3":{p1:482,min:457.9},"KD-SWM-04-WHDBL-21-3":{p1:526,min:499.7},
+  "KD-SWM-04-WHDBL-26-3":{p1:679,min:645.05},"KD-SWM-06-LBL-12-2":{p1:251,min:238.45},
+  "KD-SWM-06-LBL-15-2":{p1:281,min:266.95},"KD-SWM-06-LBL-15-3":{p1:383,min:363.85},
+  "KD-SWM-01-GN-18-3":{p1:544,min:516.8},"KD-SWM-01-GN-21-3":{p1:574,min:545.3},
+  "KD-SWM-01-GN-26-3":{p1:740,min:703},"KD-SWM-04-WHDBL-12-2":{p1:175,min:166.25},
+  "KD-SWM-04-WHDBL-15-3":{p1:349,min:331.55},"KD-SWM-01-GN-12-2":{p1:175,min:166.25},
+  "KD-SWM-01-GN-15-3":{p1:349,min:331.55},"KD-SWM-05-LBL-12-2":{p1:175,min:166.25},
+  "KD-SWM-05-LBL-15-3":{p1:349,min:331.55},"KD-SWM-02-ORGBL-12-2":{p1:175,min:166.25},
+  "KD-SWM-02-ORGBL-15-3":{p1:349,min:331.55},
+};
+
+// Table outside prices (from 15 May - some items different)
+const TABLE_OUT_FMG = {
+  "T-FMG-12T-BK-TH":{p1:960, min:921.6},
+  "T-FMG-15T-BK-TH":{p1:1170,min:1123.2},
+  "T-FMG-18T-BK-TH":{p1:1280,min:1228.8},
+  "T-MLM-12T-SV-TH":{p1:1390,min:1334.4},
+  "T-MLM-15T-SV-TH":{p1:1690,min:1622.4},
+  "T-MLM-18T-SV-TH":{p1:1790,min:1718.4},
+};
+
+// Get outside price for a product
+function getOutPrice(p) {
+  if (p.cat === 'chair' && CHAIR_OUT[p.code]) return CHAIR_OUT[p.code];
+  if (p.cat === 'kid'   && KID_OUT[p.code])   return KID_OUT[p.code];
+  if (p.cat === 'pool'  && POOL_OUT[p.code])   return POOL_OUT[p.code];
+  if (p.cat === 'table' && TABLE_OUT_FMG[p.code]) return TABLE_OUT_FMG[p.code];
+  // Default: same as platform
+  return {p1: p.p1, min: p.min};
+}
+
+const fmt = n => (n != null && n !== undefined && n !== '') ? Number(n).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2}) : '-';
+
+let currentCat = 'all';
+let searchQ = '';
+
+function render() {
+  const q = searchQ.toLowerCase().trim();
+  let filtered = PRODUCTS.filter(p => {
+    if (currentCat !== 'all' && p.cat !== currentCat) return false;
+    if (q && !p.code.toLowerCase().includes(q) && !p.note.toLowerCase().includes(q)) return false;
+    return true;
+  });
+
+  // Group by cat
+  const groups = {};
+  filtered.forEach(p => {
+    if (!groups[p.cat]) groups[p.cat] = [];
+    groups[p.cat].push(p);
+  });
+
+  const main = document.getElementById('mainContent');
+  document.getElementById('resultCount').textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    main.innerHTML = `<div class="empty-state">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <p>ไม่พบสินค้าที่ค้นหา</p>
+    </div>`;
+    return;
+  }
+
+  let html = '';
+  Object.keys(groups).forEach(cat => {
+    const items = groups[cat];
+    html += `<div class="category-section">
+      <div class="category-header">
+        <span class="category-title">${CAT_LABELS[cat] || cat}</span>
+        <span class="category-count">${items.length} รายการ</span>
+        <div class="category-line"></div>
+      </div>
+      <div style="overflow-x:auto;">
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th rowspan="2" style="vertical-align:middle">#</th>
+            <th rowspan="2" style="vertical-align:middle">รหัสสินค้า</th>
+            <th colspan="2" class="th-group-plat">🟢 In Platform</th>
+            <th colspan="2" class="th-group-out">🔴 นอก Platform</th>
+            <th rowspan="2" style="vertical-align:middle; text-align:right">ขั้นต่ำ</th>
+            <th rowspan="2" style="vertical-align:middle">หมายเหตุ</th>
+          </tr>
+          <tr>
+            <th class="th-sub th-sub-plat">ราคาขาย (P1)</th>
+            <th class="th-sub th-sub-plat-min">ไม่ต่ำกว่า (P6)</th>
+            <th class="th-sub th-sub-out">ราคาขาย (P1)</th>
+            <th class="th-sub th-sub-out-min">ไม่ต่ำกว่า (P6)</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+    items.forEach(p => {
+      const out = getOutPrice(p);
+      // Check if outside prices differ from platform
+      const p1Diff  = Math.abs(out.p1  - p.p1)  > 0.01;
+      const minDiff = Math.abs(out.min - p.min) > 0.01;
+      html += `<tr>
+        <td class="no-cell">${p.no}</td>
+        <td class="code-cell">${p.code}${p.isNew ? '<span class="tag-new">NEW</span>' : ''}</td>
+        <td class="price-plat-p1">${fmt(p.p1)}</td>
+        <td class="price-plat-min">${fmt(p.min)}</td>
+        <td class="price-out-p1">${fmt(out.p1)}${p1Diff ? ' <span style="font-size:9px;opacity:0.6">↓</span>' : ''}</td>
+        <td class="price-out-min">${fmt(out.min)}${minDiff ? ' <span style="font-size:9px;opacity:0.6">↓</span>' : ''}</td>
+        <td class="min-cell">${p.qty != null ? p.qty : '-'}</td>
+        <td class="note-cell">${p.note}</td>
+      </tr>`;
+    });
+
+    html += `</tbody></table></div></div>`;
+  });
+
+  main.innerHTML = html;
+}
+
+// Events
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQ = e.target.value;
+  render();
+});
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCat = btn.dataset.cat;
+    render();
+  });
+});
+
+
+render();
+</script>
+</body>
+</html>
